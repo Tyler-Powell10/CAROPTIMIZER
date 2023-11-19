@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Optimizer</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a routerLink="/home">Home</a></li>
+            <li><a routerLink="/account">Account</a></li>
+            <li><a routerLink="/carConfig">Configure Car</a></li>
+            <li><a routerLink="/parts">View Parts</a></li>
+            <li><a routerLink="/gallery">Gallery</a></li>
+            <li><a routerLink="/login">Login</a></li>
+            <li><a *ngIf="accountType === 'CustomerSupport'" routerLink="/support">Tickets</a></li>
+            <li><a *ngIf="accountType === 'Manufacturer' || accountType === 'Affiliate'" routerLink="/requestParts">Request Parts</a></li>
+            <li><a *ngIf="accountType === 'Moderator'" routerLink="/reviewContent">Review Content</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>

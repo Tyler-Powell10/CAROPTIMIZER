@@ -1,0 +1,100 @@
+.account-info {
+    background-color: #ffffff;
+    margin: 100px auto 30px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.608);
+    max-width: 800px;
+    text-align: center;
+}
+
+.account-info h1 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.account-info h2 {
+    text-align: left;
+}
+
+.user-info,
+.saved-configurations {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.user-info p,
+.configuration p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.saved-configurations {
+    background-color: #f9f9f9;
+}
+
+.configuration {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+    background-color: #666;
+}
+
+.admin-dashboard {
+    margin-top: 40px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+.admin-dashboard h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}

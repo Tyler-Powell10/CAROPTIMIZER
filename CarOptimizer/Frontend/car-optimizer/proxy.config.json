@@ -1,0 +1,21 @@
+{
+    "/PostCar": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/GetCar": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+
+    
+        "/api": {
+          "target": "http://localhost:8080",
+          "secure": false,
+          "changeOrigin": true,
+          "logLevel": "debug",
+          "pathRewrite": {"^/api": ""}
+        }
+      
+      
+}

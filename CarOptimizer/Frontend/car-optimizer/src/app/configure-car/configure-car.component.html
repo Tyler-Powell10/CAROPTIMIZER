@@ -1,0 +1,50 @@
+
+<div> 
+    These will be drop down menus populated from the backend db s
+</div>
+<br>
+<br>
+
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="make">Make:</label>
+      <input id="make" type="text" formControlName="make" required>
+      <div *ngIf="carForm.get('make')?.invalid && carForm.get('make')?.touched">
+        Please enter the make of the car.
+      </div>
+    </div>
+  
+    <div>
+      <label for="model">Model:</label>
+      <input id="model" type="text" formControlName="model" required>
+      <div *ngIf="carForm.get('model')?.invalid && carForm.get('model')?.touched">
+        Please enter the model of the car.
+      </div>
+    </div>
+  
+    <div>
+      <label for="year">Year:</label>
+      <input id="year" type="text" formControlName="year" required>
+      <div *ngIf="carForm.get('year')?.invalid && carForm.get('year')?.touched">
+        Please enter a valid year.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="carForm.invalid">Submit</button>
+  </form>
+
+  <br>
+  <br>
+
+<button (click)="fetchCars()">Fetch Cars</button>
+
+
+<div *ngIf="cars">
+  <div *ngFor="let car of cars">
+    {{ car.make }} {{ car.model }} - {{ car.year }}
+  </div>
+</div>
+
+
+
+  

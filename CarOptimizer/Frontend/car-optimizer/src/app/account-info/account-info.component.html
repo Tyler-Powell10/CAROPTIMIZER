@@ -1,0 +1,42 @@
+<html>
+
+<body> <br>
+    <section class="account-info">
+        <h1>Account Information</h1>
+        <div class="user-info">
+            <h2>User Details</h2>
+            <p><strong>Type of Account:</strong> {{user}} </p>
+            <p><strong>Email:</strong> user@example.com</p>
+            <button class="edit-btn">Edit Email & Password</button>
+            <button class="delete-btn">Delete Account</button>
+        </div>
+
+        <div class="saved-configurations">
+            <h2>Saved Car Configurations</h2>
+            <div class="configuration">
+                <h3>Configuration 1</h3>
+                <p>Details about the configuration</p>
+            </div>
+        </div>
+    </section>
+
+    <button (click)="changeUserType('User')">Set as User</button>
+    <button (click)="changeUserType('SysAdmin')">Set as SysAdmin</button>
+    <button (click)="changeUserType('Affiliate')">Set as Affiliate</button>
+    <button (click)="changeUserType('Manufacturer')">Set as Manufacturer</button>
+    <button (click)="changeUserType('Moderator')">Set as Moderator</button>
+    <button (click)="changeUserType('InventoryManager')">Set as Inventory Manager</button>
+    <button (click)="changeUserType('CustomerSupport')">Set as Customer Support</button>
+
+
+    <div *ngIf="user === 'SysAdmin'" class="admin-dashboard">
+        <h2>Admin Dashboard</h2>
+        <p>dashboard will be displayed here </p>
+    </div>
+
+    <footer>
+        <p>footer here</p>
+    </footer>
+</body>
+
+</html>
