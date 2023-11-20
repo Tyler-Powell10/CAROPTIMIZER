@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <mysqlx/xdevapi.h>
 #include "login.h"
+#include "getInfoFromDB.h"
 
 using json = nlohmann::json;
 using namespace std;
@@ -18,9 +19,12 @@ private:
     Session dbSession;
 
 public:
-    //! put password here
-    Server() : dbSession("localhost", 33060, "root", "USERPASS") {}
-
+    //! put password here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //! put password here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Server() : dbSession("localhost", 33060, "root", "USERPASS!") {}
+    //! put password here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //! put password here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     // method to start the server on a given port
     void start(uint16_t port)
     {
@@ -102,8 +106,7 @@ public:
         });
         
 
-        srv.Post("/signup", [this, CORS_HEADERS](const httplib::Request &req, httplib::Response &res)
-                 {
+        srv.Post("/signup", [this, CORS_HEADERS](const httplib::Request &req, httplib::Response &res) {
             try {
                 auto body = json::parse(req.body);
                 std::string username = body["username"];  
@@ -135,6 +138,37 @@ public:
             }
             res.set_header("Access-Control-Allow-Origin", "*"); 
         });
+
+
+        srv.Post("/getUserInfo", [this, CORS_HEADERS](const httplib::Request &req, httplib::Response &res) {
+             res.set_header("Access-Control-Allow-Origin", "*");
+            try {
+                auto body = json::parse(req.body);
+                std::string email = body["email"];
+                std::cout << "Email received in /getUserInfo: " << email << std::endl;
+
+
+                UserInfoFetcher fetcher(dbSession);
+                json userInfo = fetcher.getUserInfoByEmail(email);
+
+                if (!userInfo.empty()) {
+                    res.set_content(userInfo.dump(), "application/json");
+                } else {
+                    res.status = 404;
+                    res.set_content(json({{"message", "User not found"}}).dump(), "application/json");
+                }
+
+            } catch (const json::exception& e) {
+                cerr << "JSON parsing error: " << e.what() << endl;
+                res.status = 400;
+                res.set_content(json({{"message", "Invalid JSON payload"}}).dump(), "application/json");
+            } catch (const std::exception& e) {
+                cerr << "Exception: " << e.what() << endl;
+                res.status = 500;
+                res.set_content(json({{"message", "Server error"}}).dump(), "application/json");
+            }
+        });
+
 
         // error handling for undefined routes
         srv.set_error_handler([CORS_HEADERS](const httplib::Request &, httplib::Response &res)

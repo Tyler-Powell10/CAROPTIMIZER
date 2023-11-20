@@ -17,7 +17,9 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.user).subscribe(response => {
       this.isLoggedIn = true;
-      this.router.navigate(['/home']);
+      console.log(this.user.email);
+      this.authService.setCurrentUserEmail(this.user.email);
+      this.router.navigate(['/account']);
       console.log("login success")
     }, error => {
       console.error(error);
